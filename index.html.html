@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bazar Coin</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #111;
+      color: #fff;
+      font-family: 'Arial Black', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: start;
+      height: 100vh;
+      padding-top: 40px;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 40px;
+    }
+
+    .coins {
+      font-size: 28px;
+      margin: 20px 0;
+    }
+
+    .button-bar {
+      display: flex;
+      gap: 10px;
+      margin-top: 40px;
+    }
+
+    button {
+      background-color: #222;
+      color: #fff;
+      border: 2px solid #444;
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #333;
+      border-color: #666;
+    }
+  </style>
+</head>
+<body>
+  <h1>Bazar Coin</h1>
+  <div class="coins">Баланс: <span id="coinCount">0</span> монет</div>
+
+  <div class="button-bar">
+    <button onclick="showAlert('Задания скоро будут!')">Задания</button>
+    <button onclick="showAlert('Рынок временно недоступен')">Рынок</button>
+    <button onclick="showAlert('Розыгрыши скоро начнутся!')">Розыгрыши</button>
+  </div>
+
+  <script>
+    let coins = 0;
+    const coinDisplay = document.getElementById("coinCount");
+
+    setInterval(() => {
+      coins += Math.floor(Math.random() * 2) + 1;
+      coinDisplay.innerText = coins;
+    }, 1000);
+
+    function showAlert(message) {
+      alert(message);
+    }
+  </script>
+</body>
+</html>
