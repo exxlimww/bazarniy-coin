@@ -77,3 +77,44 @@
   </script>
 </body>
 </html>
+<script>
+// Функция для получения или установки уникального ID пользователя
+function getOrCreateUserID() {
+    // Проверяем, есть ли в локальном хранилище ID
+    let userID = localStorage.getItem("userID");
+    if (!userID) {
+        // Если ID нет, создаем его случайным образом или из имени (например, danyalove1)
+        userID = prompt("Введите ваш ID (например, danyalove1):", "");
+        if (userID) {
+            // Сохраняем в локальном хранилище, чтобы не запрашивать каждый раз
+            localStorage.setItem("userID", userID);
+        } else {
+            alert("ID не был введен, используем случайный.");
+            userID = "guest" + Math.floor(Math.random() * 10000); // случайный ID для гостей
+            localStorage.setItem("userID", userID);
+        }
+    }
+    return userID;
+}
+
+// Основной код для фарма монет
+let coins = 0; // начальное количество монет
+let coinsPerSecond = 1; // обычная скорость фарма монет
+
+// Получаем уникальный ID пользователя
+let userID = getOrCreateUserID();
+
+// Устанавливаем специальную скорость фарма для конкретного пользователя (например, danyalove1)
+if (userID === "danyalove1") {
+    coinsPerSecond = 26; // скорость фарма 26 монет в секунду для danyalove1
+} else {
+    coinsPerSecond = 1; // обычная скорость для остальных пользователей
+}
+
+// Функция, которая увеличивает монеты
+setInterval(() => {
+    coins += coinsPerSecond;
+    console.log(`Монеты: ${coins}, Пользователь: ${userID}, Скорость: ${coinsPerSecond} монет в секунду`);
+    document.getElementById("coins").textContent = `Монеты: ${coins}`;
+}, 1000);
+</script>
